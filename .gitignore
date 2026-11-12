@@ -1,0 +1,13 @@
+.hoplite/
+**/__pycache__/
+**/x64/
+**/Debug/
+**/Release/
+!WindowsProject1-Stable/keyauth-lib/Release/
+!WindowsProject1-Stable/keyauth-lib/Release/library_x64.lib
+**/.vs/
+*.obj
+*.pdb
+*.ilk
+*.tlog
+artifacts/
