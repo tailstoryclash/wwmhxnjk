@@ -109,7 +109,8 @@ export class Menus {
     if (!this.current) return;
     if (e.code === 'Escape') {
       if (['settings', 'controls', 'journal', 'newgame', 'chapters'].includes(this.current)) this.show(this.returnTo);
-      else if (this.current === 'pause') g.resume();
+      // Ignore the Esc press that caused the pause in the first place.
+      else if (this.current === 'pause' && performance.now() - g.pausedAt > 400) g.resume();
     } else if (e.code === 'Space' || e.code === 'Enter') {
       if (this.current === 'intro' || this.current === 'ending') {
         e.preventDefault();

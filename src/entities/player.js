@@ -156,6 +156,11 @@ export class Player {
     this._interaction();
   }
 
+  // Snap the camera to the player without advancing the simulation.
+  syncCamera() {
+    this._camera(0, this.game.save.settings);
+  }
+
   _camera(dt, s) {
     const g = this.game, cam = g.engine.camera;
     this.recoil = damp(this.recoil, 0, 9, dt);
