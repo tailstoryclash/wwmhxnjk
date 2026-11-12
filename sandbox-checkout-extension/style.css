@@ -1,0 +1,27 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #101820; color: #eaf1f6; }
+* { box-sizing: border-box; }
+body { margin: 0; width: 410px; max-width: 100vw; }
+main { padding: 22px; }
+.badge { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; color: #8ee4c0; }
+h1 { margin: 8px 0; font-size: 26px; letter-spacing: -.7px; }
+p { font-size: 13px; line-height: 1.5; }
+header p { color: #b5c3cf; margin: 0 0 18px; }
+.panel { padding: 16px; margin-top: 12px; background: #19252f; border: 1px solid #334451; border-radius: 12px; }
+label, h2 { display: block; font-size: 13px; font-weight: 700; margin: 0 0 10px; }
+select, button { font: inherit; font-size: 13px; border-radius: 7px; padding: 10px; }
+select { width: 100%; background: #101820; color: inherit; border: 1px solid #5c7182; }
+.fixture { margin-top: 16px; }
+.fixture span { display: block; color: #b5c3cf; font-size: 10px; }
+.fixture strong { display: block; margin-top: 6px; font-family: monospace; font-size: 18px; letter-spacing: 1px; }
+.hint { font-size: 11px; color: #b5c3cf; }
+button { cursor: pointer; border: 1px solid transparent; font-weight: 700; background: #8ee4c0; color: #10261e; }
+#run { width: 100%; }
+button:disabled { opacity: .5; cursor: default; }
+.secondary { background: transparent; border-color: #6a8091; color: #eaf1f6; }
+button:focus-visible, select:focus-visible { outline: 2px solid #eaf1f6; outline-offset: 3px; }
+.buttons { display: flex; gap: 8px; margin-bottom: 12px; }
+#result { min-height: 39px; margin: 0 0 12px; }
+#result[data-state="succeeded"] { color: #8ee4c0; }
+#result[data-state="declined"], #result[data-state="canceled"] { color: #ffb7b7; }
+footer { margin-top: 16px; font-size: 10px; line-height: 1.6; color: #b5c3cf; }
+[hidden] { display: none !important; }

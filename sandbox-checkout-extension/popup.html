@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+  <title>Local checkout simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="model.js" defer></script>
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><span class="badge">OFFLINE · DEMO ONLY</span><h1>Checkout sandbox</h1><p>Explore payment outcomes without making a payment.</p></header>
+    <section class="panel" aria-label="Scenario settings">
+      <label for="scenario">Test scenario</label>
+      <select id="scenario"><option value="approved">Approved payment</option><option value="declined">Generic decline</option><option value="challenge">Verification required</option></select>
+      <div class="fixture"><span>Official Stripe test fixture · reference only</span><strong id="card"></strong></div>
+      <p class="hint">These fixed fixtures are for test environments only. This demo does not contact Stripe or validate card details.</p>
+      <button id="run" type="button">Run local simulation</button>
+    </section>
+    <section class="panel outcome" aria-label="Simulation result">
+      <h2>Result</h2><p id="result" role="status" aria-live="polite" aria-atomic="true"></p>
+      <div id="challenge" hidden><p class="hint">Mock challenge — not a bank or 3D Secure page.</p><div class="buttons"><button id="complete" type="button">Complete verification</button><button id="cancel" type="button" class="secondary">Cancel</button></div></div>
+      <button id="reset" type="button" class="secondary">Reset</button>
+    </section>
+    <footer>No website access. No API keys. No card collection.<br>State clears when you close this popup.</footer>
+  </main>
+</body>
+</html>
