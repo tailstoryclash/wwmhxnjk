@@ -1,0 +1,37 @@
+name: Windows build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 45
+    env:
+      # Hosted runners ship Visual Studio 2022; the project default (v145) needs a newer install.
+      ALBION_TOOLSET: v143
+      VCVARS: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regression tests (MSVC)
+        shell: cmd
+        run: |
+          call "%VCVARS%" || exit /b 1
+          python WindowsProject1-Stable\tests\run-portable-tests.py --compiler cl || exit /b 1
+          call WindowsProject1-Stable\tests\run-windows-tests.cmd || exit /b 1
+
+      # TensorRT/CUDA SDKs are not redistributable, so only the ONNX Runtime/DirectML variant is built here.
+      - name: Build (ONNX Runtime / DirectML)
+        shell: cmd
+        run: |
+          call "%VCVARS%" || exit /b 1
+          cd WindowsProject1-Stable
+          call build.bat false winml || exit /b 1
+          if not exist albion-ui-centered.exe exit /b 1
